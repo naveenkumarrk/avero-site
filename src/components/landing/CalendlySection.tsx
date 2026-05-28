@@ -1,6 +1,6 @@
 "use client";
 
-// Replace CALENDLY_URL with your Calendly link
+import Cal from "@calcom/embed-react";
 
 export function CalendlySection() {
   return (
@@ -13,7 +13,7 @@ export function CalendlySection() {
 
         {/* Heading */}
         <h2
-          className="font-medium tracking-tight text-ink text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px]"
+          className="font-medium tracking-tight text-ink text-[28px] sm:text-[36px] md:text-[46px] lg:text-[56px]"
           style={{ lineHeight: 1.05, letterSpacing: "-0.04em" }}
         >
           Let&apos;s talk about your project.
@@ -25,15 +25,10 @@ export function CalendlySection() {
         </p>
       </div>
 
-      {/* Calendly embed placeholder */}
-      <div
-        id="calendly-embed"
-        className="rounded-2xl border border-ink-12 bg-white max-w-3xl mx-auto min-h-[600px] flex items-center justify-center"
-      >
-        <span className="text-ink-30 text-sm select-none">
-          Calendly booking will appear here
-        </span>
-      </div>
+      <Cal
+        calLink="avero/your-website-project-kickoff"
+        config={{ layout: "month_view", theme: "light" }}
+      />
     </section>
   );
 }

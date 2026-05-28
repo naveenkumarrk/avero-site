@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { LenisProvider } from "@/components/layout/LenisProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -24,6 +25,7 @@ const instrument = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Avero — Design & Build Studio",
   description: "Senior studio. Live URL in seven days, not seven weeks.",
+  icons: [{ rel: "icon", url: "/logo.svg", type: "image/svg+xml" }],
 };
 
 export default function RootLayout({
@@ -36,7 +38,9 @@ export default function RootLayout({
       lang="en"
       className={`${poppins.variable} ${jetbrains.variable} ${instrument.variable} antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        <LenisProvider>{children}</LenisProvider>
+      </body>
     </html>
   );
 }

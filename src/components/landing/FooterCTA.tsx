@@ -25,7 +25,7 @@ export default function FooterCTA() {
 
         {/* Heading */}
         <h2
-          className="font-bold leading-none tracking-tight mb-6 text-[40px] sm:text-[56px] md:text-[72px] lg:text-[88px]"
+          className="font-bold leading-none tracking-tight mb-6 text-[36px] sm:text-[50px] md:text-[64px] lg:text-[78px]"
           style={{ fontStyle: "normal" }}
         >
           Talk to us on{" "}

@@ -10,7 +10,7 @@ export function Comparison() {
           The honest comparison
         </span>
         <h2
-          className="font-medium leading-none tracking-tight text-ink text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px]"
+          className="font-medium leading-none tracking-tight text-ink text-[28px] sm:text-[36px] md:text-[46px] lg:text-[56px]"
           style={{ letterSpacing: "-0.05em" }}
         >
           Same project, three ways.
@@ -19,10 +19,10 @@ export function Comparison() {
 
       {/* Horizontally scrollable wrapper */}
       <div className="overflow-x-auto -mx-5 px-5 sm:-mx-8 sm:px-8 md:-mx-12 md:px-12 lg:mx-0 lg:px-0">
-        <div
-          className="grid border border-ink-12 rounded-[18px] overflow-hidden bg-white"
-          style={{ gridTemplateColumns: "1.15fr 1fr 1fr", minWidth: "720px" }}
-        >
+          <div
+            className="grid border border-ink-12 rounded-[18px] overflow-hidden bg-white"
+            style={{ gridTemplateColumns: "1.15fr 1fr 1fr", minWidth: "720px" }}
+          >
           {/* Avero header */}
           <div className="bg-ink text-white px-8 pt-8 pb-7 flex flex-col gap-3">
             <div className="flex items-center gap-3">
@@ -33,7 +33,7 @@ export function Comparison() {
                 ★ Recommended
               </span>
             </div>
-            <p className="font-medium leading-none" style={{ fontSize: "28px", letterSpacing: "-0.03em" }}>
+            <p className="font-medium leading-none" style={{ fontSize: "24px", letterSpacing: "-0.03em" }}>
               Avero
             </p>
             <p className="text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
@@ -44,7 +44,7 @@ export function Comparison() {
           {/* Typical Agency header */}
           <div className="px-8 pt-8 pb-7 flex flex-col gap-3 border-l border-ink-12" style={{ background: "#fafafa" }}>
             <div style={{ height: "26px" }} />
-            <p className="font-medium text-ink leading-none" style={{ fontSize: "28px", letterSpacing: "-0.03em" }}>
+            <p className="font-medium text-ink leading-none" style={{ fontSize: "24px", letterSpacing: "-0.03em" }}>
               Typical Agency
             </p>
             <p className="text-sm text-ink-50">Full-service agency</p>
@@ -53,7 +53,7 @@ export function Comparison() {
           {/* Freelancer header */}
           <div className="px-8 pt-8 pb-7 flex flex-col gap-3 border-l border-ink-12" style={{ background: "#fafafa" }}>
             <div style={{ height: "26px" }} />
-            <p className="font-medium text-ink leading-none" style={{ fontSize: "28px", letterSpacing: "-0.03em" }}>
+            <p className="font-medium text-ink leading-none" style={{ fontSize: "24px", letterSpacing: "-0.03em" }}>
               Freelancer
             </p>
             <p className="text-sm text-ink-50">Independent contractor</p>

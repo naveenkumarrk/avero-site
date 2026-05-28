@@ -54,7 +54,7 @@ export function Testimonials() {
           Testimonials
         </span>
         <h2
-          className="font-medium leading-tight text-ink text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px]"
+          className="font-medium leading-tight text-ink text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px]"
           style={{ letterSpacing: "-0.04em" }}
         >
           Don&apos;t take our word. Take theirs.

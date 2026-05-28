@@ -66,7 +66,7 @@ export function Process() {
         How it works
       </div>
       <h2
-        className="font-medium leading-none text-[36px] md:text-[48px] lg:text-[64px]"
+          className="font-medium leading-none text-[32px] md:text-[42px] lg:text-[56px]"
         style={{ letterSpacing: "-0.04em" }}
       >
         A clean,{" "}
@@ -202,7 +202,7 @@ export function Process() {
                       <span className="mr-1.5 inline-block w-1 h-1 rounded-full bg-ink-30 align-middle" aria-hidden />
                       {step.day}
                     </p>
-                    <h3 className="font-medium mb-3 leading-tight" style={{ fontSize: "32px" }}>
+                    <h3 className="font-medium mb-3 leading-tight" style={{ fontSize: "28px" }}>
                       {step.title}
                     </h3>
                     <p className="leading-relaxed text-ink-70" style={{ fontSize: "15px" }}>

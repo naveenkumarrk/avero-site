@@ -23,7 +23,7 @@ function MarqueeTrack({
       <div className="flex items-center gap-6 sm:gap-10 md:gap-14">
         {repeated.map((item, i) => (
           <span key={i} className="flex items-center gap-6 sm:gap-10 md:gap-14">
-            <span className="text-[14px] sm:text-[18px] md:text-[22px] tracking-tight font-medium whitespace-nowrap">
+            <span className="text-[13px] sm:text-[16px] md:text-[20px] tracking-tight font-medium whitespace-nowrap">
               {item}
             </span>
             <span className="w-2 h-2 rounded-full bg-current inline-block flex-shrink-0" />

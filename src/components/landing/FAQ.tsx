@@ -12,7 +12,7 @@ export function FAQ() {
         {/* Left */}
         <div className="flex flex-col gap-8 lg:sticky lg:top-[120px] self-start">
           <h2
-            className="font-medium leading-tight text-ink text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px]"
+            className="font-medium leading-tight text-ink text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px]"
             style={{ letterSpacing: "-0.05em" }}
           >
             Frequently Asked Questions

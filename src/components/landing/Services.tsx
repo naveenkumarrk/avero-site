@@ -22,7 +22,7 @@ export default function Services() {
           <span className="font-mono text-[11px] tracking-[0.14em] uppercase opacity-50">
             All your product needs handled
           </span>
-          <h2 className="text-[36px] md:text-[48px] lg:text-[64px] leading-none tracking-[-0.05em] font-medium">
+          <h2 className="text-[32px] md:text-[42px] lg:text-[56px] leading-none tracking-[-0.05em] font-medium">
             In record
             <br />
             time.
@@ -57,7 +57,7 @@ export default function Services() {
                 style={{ gridTemplateColumns: "1fr 48px" }}
               >
                 <span
-                  className="text-[28px] md:text-[36px] lg:text-[44px] font-medium leading-none"
+                  className="text-[24px] md:text-[32px] lg:text-[38px] font-medium leading-none"
                   style={{ letterSpacing: "-0.05em" }}
                 >
                   {label}

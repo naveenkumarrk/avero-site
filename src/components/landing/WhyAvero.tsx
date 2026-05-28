@@ -231,7 +231,7 @@ function Card({ viz, title, body }: CardProps) {
       {viz}
 
       <div className="flex flex-col gap-2 p-5 lg:p-6">
-        <p className="text-ink text-[17px] font-semibold leading-snug">{title}</p>
+        <p className="text-ink text-[15px] font-semibold leading-snug">{title}</p>
         <p className="text-ink-50 text-sm leading-relaxed">{body}</p>
       </div>
     </div>
@@ -252,7 +252,7 @@ export default function WhyAvero() {
 
         {/* Headline */}
         <h2
-          className="text-ink leading-[1.1] tracking-tight max-w-2xl text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px]"
+          className="text-ink leading-[1.1] tracking-tight max-w-2xl text-[28px] sm:text-[36px] md:text-[46px] lg:text-[56px]"
         >
           The studio you wish you&apos;d found{" "}
           <span
