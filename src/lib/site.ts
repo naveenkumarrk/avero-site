@@ -10,6 +10,12 @@ export const SITE_DESCRIPTION =
 
 export const CONTACT_EMAIL = "withavero@gmail.com";
 
+/**
+ * Last meaningful content change, for sitemap `lastmod`. Bump this when page
+ * copy actually changes — not on every deploy, or Google stops trusting it.
+ */
+export const CONTENT_UPDATED = "2026-08-19";
+
 /** Rendered in the footer and emitted as schema.org `sameAs` for entity matching. */
 export const SOCIAL_LINKS = [
   { label: "X", href: "https://x.com/naveentwts" },

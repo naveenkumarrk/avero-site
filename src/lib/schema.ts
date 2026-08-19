@@ -1,0 +1,71 @@
+import type { ServicePage } from "@/lib/services";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+
+/**
+ * JSON-LD graph for a service page. Built from the same data the page renders,
+ * so the markup can never claim something the visible copy doesn't say — which
+ * is what Google's structured-data guidelines require.
+ */
+export function servicePageSchema(page: ServicePage) {
+  const url = `${SITE_URL}/${page.slug}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: page.navLabel, item: url },
+        ],
+      },
+      {
+        "@type": "Service",
+        "@id": `${url}#service`,
+        name: page.serviceName,
+        serviceType: page.serviceType,
+        description: page.metaDescription,
+        url,
+        provider: { "@id": `${SITE_URL}/#organization` },
+        areaServed: "Worldwide",
+        audience: { "@type": "Audience", audienceType: "Startups and SaaS teams" },
+      },
+      {
+        "@type": "WebPage",
+        "@id": url,
+        url,
+        name: page.metaTitle,
+        description: page.metaDescription,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        about: { "@id": `${url}#service` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        mainEntity: page.faqs.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+    ],
+  };
+}
+
+/** FAQPage for the homepage accordion (answers are in the DOM, just collapsed). */
+export function faqPageSchema(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${SITE_URL}/#faq`,
+    name: `${SITE_NAME} — frequently asked questions`,
+    mainEntity: items.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+}
