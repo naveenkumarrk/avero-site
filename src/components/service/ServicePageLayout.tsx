@@ -53,6 +53,20 @@ export default function ServicePageLayout({ page }: { page: ServicePage }) {
             {page.lede}
           </p>
 
+          {/* Label/value facts. Definition lists and tables are the shape
+              answer engines extract most reliably, and it puts price and
+              timeline in front of a buyer without a scroll. */}
+          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink-12 bg-ink-12 sm:grid-cols-3">
+            {page.atAGlance.map(({ label, value }) => (
+              <div key={label} className="bg-white p-5">
+                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-50">
+                  {label}
+                </dt>
+                <dd className="mt-2 text-[14px] font-medium leading-snug text-ink">{value}</dd>
+              </div>
+            ))}
+          </dl>
+
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <Link
               href="/#contact"

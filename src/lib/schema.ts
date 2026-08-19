@@ -1,5 +1,5 @@
 import type { ServicePage } from "@/lib/services";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { CONTENT_UPDATED, SITE_NAME, SITE_URL } from "@/lib/site";
 
 /**
  * JSON-LD graph for a service page. Built from the same data the page renders,
@@ -39,6 +39,9 @@ export function servicePageSchema(page: ServicePage) {
         description: page.metaDescription,
         isPartOf: { "@id": `${SITE_URL}/#website` },
         breadcrumb: { "@id": `${url}#breadcrumb` },
+        datePublished: CONTENT_UPDATED,
+        dateModified: CONTENT_UPDATED,
+        inLanguage: "en-US",
         about: { "@id": `${url}#service` },
         publisher: { "@id": `${SITE_URL}/#organization` },
       },

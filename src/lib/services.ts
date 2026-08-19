@@ -19,6 +19,8 @@ export type ServicePage = {
   eyebrow: string;
   h1: string;
   lede: string;
+  /** Short label/value facts. Highly quotable for answer engines. */
+  atAGlance: { label: string; value: string }[];
   deliverablesHeading: string;
   deliverables: { title: string; desc: string }[];
   stack: { group: string; items: string[] }[];
@@ -50,6 +52,14 @@ export const MVP_DEVELOPMENT: ServicePage = {
   h1: "MVP development, live in seven days",
   lede:
     "Most agencies quote six to twelve weeks to get a first version in front of users. We scope on Monday and hand you a live URL the following Monday — production code on your own repo, not a no-code prototype you outgrow in a month.",
+  atAGlance: [
+    { label: "Timeline", value: "7 days, kickoff to live URL" },
+    { label: "Price", value: "$14k flat per sprint" },
+    { label: "Stack", value: "Next.js, TypeScript, Postgres, Stripe" },
+    { label: "You own", value: "The repo, the domain, the deploy" },
+    { label: "Revisions", value: "One consolidated round" },
+    { label: "Support", value: "30 days post-launch, included" },
+  ],
   deliverablesHeading: "What a seven-day MVP sprint includes",
   deliverables: [
     {
@@ -161,6 +171,14 @@ export const WEB_DESIGN: ServicePage = {
   h1: "A web design studio that ships the build too",
   lede:
     "Most studios hand over a Figma file and leave the hard part to someone else. We design and build in the same sprint, so what you approve on day three is what goes live on day seven — no handoff, no translation loss, no “that isn't buildable”.",
+  atAGlance: [
+    { label: "Timeline", value: "7 days, design and build" },
+    { label: "Price", value: "$14k flat per sprint" },
+    { label: "Design by", value: "Day 3, hi-fi and reviewable" },
+    { label: "You own", value: "Design source, repo and deploy" },
+    { label: "Revisions", value: "One consolidated round" },
+    { label: "Includes", value: "Technical SEO and analytics" },
+  ],
   deliverablesHeading: "What a design sprint includes",
   deliverables: [
     {
