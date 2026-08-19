@@ -1,4 +1,5 @@
 import React from "react";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export default function FooterCTA() {
   return (
@@ -46,10 +47,10 @@ export default function FooterCTA() {
             Book the call →
           </a>
           <a
-            href="mailto:hello@avero.studio"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="rounded-full px-6 py-3.5 border border-white/25 text-white transition-colors hover:border-white/50"
           >
-            hello@avero.studio
+            {CONTACT_EMAIL}
           </a>
         </div>
 

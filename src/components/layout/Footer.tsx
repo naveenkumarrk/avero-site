@@ -1,3 +1,5 @@
+import { CONTACT_EMAIL, SOCIAL_LINKS } from "@/lib/site";
+
 export default function Footer() {
   return (
     <footer className="bg-ink text-white px-5 sm:px-8 md:px-12 lg:px-20 py-8">
@@ -15,23 +17,25 @@ export default function Footer() {
 
         {/* Center: links */}
         <div className="flex items-center gap-6">
-          {["Twitter", "LinkedIn", "Dribbble"].map((link) => (
+          {SOCIAL_LINKS.map(({ label, href }) => (
             <a
-              key={link}
-              href="#"
+              key={label}
+              href={href}
+              target="_blank"
+              rel="me noopener noreferrer"
               className="text-white/50 hover:text-white text-sm transition-colors"
             >
-              {link}
+              {label}
             </a>
           ))}
         </div>
 
         {/* Right: email */}
         <a
-          href="mailto:hello@avero.studio"
+          href={`mailto:${CONTACT_EMAIL}`}
           className="text-white/50 hover:text-accent text-sm transition-colors"
         >
-          hello@avero.studio
+          {CONTACT_EMAIL}
         </a>
       </div>
     </footer>

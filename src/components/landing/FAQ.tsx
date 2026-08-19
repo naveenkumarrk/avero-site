@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FAQ_ITEMS } from "@/lib/constants";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number>(0);
@@ -18,11 +19,11 @@ export function FAQ() {
             Frequently Asked Questions
           </h2>
           <a
-            href="mailto:hello@avero.studio"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="text-[15px] text-ink-50 hover:text-ink transition-colors"
           >
             Can&apos;t find it?{" "}
-            <span className="underline underline-offset-2">hello@avero.studio</span>
+            <span className="underline underline-offset-2">{CONTACT_EMAIL}</span>
           </a>
         </div>
 
