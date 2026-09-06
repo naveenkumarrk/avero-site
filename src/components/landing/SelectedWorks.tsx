@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+
+import { CASE_STUDIES } from "@/lib/work";
 
 const PROJECTS = [
   { name: "Lumina Dashboard", bg: "#f5f5f0", image: "/images/day-25.webp" },
@@ -15,13 +18,20 @@ const PROJECTS = [
   { name: "Cascade UI", bg: "#f0f5fa", image: "/images/day-6.webp" },
 ];
 
+/** image path -> case study anchor, so a tile lands on the piece it shows. */
+const HREF_BY_IMAGE = new Map(
+  CASE_STUDIES.flatMap((study) =>
+    [study.cover, ...(study.gallery ?? [])].map((src) => [src, `/work#${study.slug}`] as const)
+  )
+);
+
 export function SelectedWorks() {
   return (
     <div id="work" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 px-5 sm:px-8 md:px-10 lg:px-12 py-5 md:py-6 lg:py-8 bg-bg">
       {PROJECTS.map((project) => (
-        <a
+        <Link
           key={project.name}
-          href="#"
+          href={HREF_BY_IMAGE.get(project.image) ?? "/work"}
           className="group block rounded-[20px] md:rounded-[24px] p-2 md:p-3 aspect-[4/3] flex items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           style={{ background: project.bg }}
         >
@@ -33,7 +43,7 @@ export function SelectedWorks() {
             className="w-full h-full object-cover rounded-xl md:rounded-2xl"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-        </a>
+        </Link>
       ))}
     </div>
   );

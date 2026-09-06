@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // that never matches an actual content change.
   return [
     { url: `${SITE_URL}/`, lastModified: CONTENT_UPDATED, priority: 1 },
+    { url: `${SITE_URL}/work`, lastModified: CONTENT_UPDATED, priority: 0.9 },
     ...SERVICE_PAGES.map(({ slug }) => ({
       url: `${SITE_URL}/${slug}`,
       lastModified: CONTENT_UPDATED,

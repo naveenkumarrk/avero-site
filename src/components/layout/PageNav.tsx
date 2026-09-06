@@ -24,6 +24,17 @@ export default function PageNav({ currentSlug }: { currentSlug?: string }) {
         </Link>
 
         <div className="flex items-center gap-1 sm:gap-2">
+          <Link
+            href="/work"
+            aria-current={currentSlug === "work" ? "page" : undefined}
+            className={`hidden sm:inline-flex px-3 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
+              currentSlug === "work"
+                ? "text-ink bg-ink-06"
+                : "text-ink-70 hover:text-ink hover:bg-ink-06"
+            }`}
+          >
+            Work
+          </Link>
           {SERVICE_PAGES.map(({ slug, navLabel }) => (
             <Link
               key={slug}

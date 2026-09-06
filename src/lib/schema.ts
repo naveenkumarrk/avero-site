@@ -1,3 +1,4 @@
+import type { CaseStudy } from "@/lib/work";
 import type { ServicePage } from "@/lib/services";
 import { CONTENT_UPDATED, SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -70,5 +71,63 @@ export function faqPageSchema(items: { q: string; a: string }[]) {
       name: q,
       acceptedAnswer: { "@type": "Answer", text: a },
     })),
+  };
+}
+
+/**
+ * JSON-LD for /work. The case studies are self-initiated concept pieces, so
+ * they're typed as CreativeWork authored by the studio — never as client
+ * commissions, which the visible copy doesn't claim either.
+ */
+export function workPageSchema(studies: CaseStudy[]) {
+  const url = `${SITE_URL}/work`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Work", item: url },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": url,
+        url,
+        name: `Selected work — ${SITE_NAME}`,
+        description:
+          "Concept case studies in SaaS, product UI, industrial and fintech interface design.",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        datePublished: CONTENT_UPDATED,
+        dateModified: CONTENT_UPDATED,
+        inLanguage: "en-US",
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        mainEntity: { "@id": `${url}#list` },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${url}#list`,
+        numberOfItems: studies.length,
+        itemListElement: studies.map((study, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "CreativeWork",
+            "@id": `${url}#${study.slug}`,
+            name: study.name,
+            headline: study.tagline,
+            description: study.summary,
+            genre: study.category,
+            image: `${SITE_URL}${study.cover}`,
+            url: `${url}#${study.slug}`,
+            creator: { "@id": `${SITE_URL}/#organization` },
+          },
+        })),
+      },
+    ],
   };
 }
