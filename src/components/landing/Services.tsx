@@ -14,7 +14,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="min-h-screen flex items-center py-[140px] px-5 sm:px-8 md:px-12 lg:px-20 bg-bg text-ink"
+      className="py-20 md:py-24 lg:py-28 px-5 sm:px-8 md:px-12 lg:px-20 bg-bg text-ink"
     >
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-[100px] w-full">
         {/* Left side - sticky info */}

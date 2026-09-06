@@ -3,7 +3,7 @@ import { COMPARISON } from "@/lib/constants";
 
 export function Comparison() {
   return (
-    <section className="min-h-screen flex flex-col justify-center py-20 md:py-[120px] lg:py-[160px] px-5 sm:px-8 md:px-12 lg:px-20 bg-bg">
+    <section className="py-20 md:py-24 lg:py-28 px-5 sm:px-8 md:px-12 lg:px-20 bg-bg">
       {/* Header */}
       <div className="flex flex-col gap-4 mb-10 md:mb-16">
         <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-ink-50">
