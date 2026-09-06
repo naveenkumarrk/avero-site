@@ -19,10 +19,12 @@ export function CalendlySection() {
     const el = slotRef.current;
     if (!el) return;
 
-    // No IntersectionObserver (or reduced-capability browser): just load it.
+    // No IntersectionObserver: load it anyway rather than stranding the
+    // booking flow. Deferred to a task so this isn't a setState in the effect
+    // body, which React flags as a synchronous cascade.
     if (typeof IntersectionObserver === "undefined") {
-      setShow(true);
-      return;
+      const t = setTimeout(() => setShow(true), 0);
+      return () => clearTimeout(t);
     }
 
     const io = new IntersectionObserver(

@@ -12,11 +12,6 @@ const logos = [
   { name: "teenzwear", style: { fontFamily: "'Georgia', serif", fontWeight: 300, fontStyle: "italic" } },
 ];
 
-const avatars = [
-  { initials: "AK", bg: "bg-violet-400" },
-  { initials: "MS", bg: "bg-sky-400" },
-  { initials: "JR", bg: "bg-emerald-400" },
-];
 
 /**
  * Background carousel pool. Points at the /work exports rather than the older
