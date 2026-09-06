@@ -21,7 +21,7 @@ const PROJECTS = [
 /** image path -> case study anchor, so a tile lands on the piece it shows. */
 const HREF_BY_IMAGE = new Map(
   CASE_STUDIES.flatMap((study) =>
-    [study.cover, ...(study.gallery ?? [])].map((src) => [src, `/work#${study.slug}`] as const)
+    study.shots.map((shot) => [shot.src, `/work#${study.slug}`] as const)
   )
 );
 

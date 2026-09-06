@@ -122,7 +122,7 @@ export function workPageSchema(studies: CaseStudy[]) {
             headline: study.tagline,
             description: study.summary,
             genre: study.category,
-            image: `${SITE_URL}${study.cover}`,
+            image: `${SITE_URL}${study.shots[0].src}`,
             url: `${url}#${study.slug}`,
             creator: { "@id": `${SITE_URL}/#organization` },
           },

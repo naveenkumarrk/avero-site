@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import Footer from "@/components/layout/Footer";
 import WorkNav from "@/components/layout/WorkNav";
+import { CaseStudyMedia, GalleryWall } from "@/components/work/Lightbox";
 import { CASE_STUDIES, GALLERY } from "@/lib/work";
 import { CONTACT_EMAIL } from "@/lib/site";
 
@@ -131,45 +131,10 @@ export default function WorkPageLayout() {
 
               {/* Image column */}
               <div className={`lg:col-span-7 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
-                <div
-                  className="rounded-[20px] p-2 md:p-3 transition-shadow duration-300 hover:shadow-xl"
-                  style={{ background: study.bg }}
-                >
-                  <Image
-                    src={study.cover}
-                    alt={`${study.name} — ${study.tagline}`}
-                    width={0}
-                    height={0}
-                    className="w-full rounded-xl md:rounded-2xl"
-                    sizes="(max-width: 1024px) 100vw, 58vw"
-                    // Only the first cover is eager; everything below the fold
-                    // stays lazy so the hero isn't competing for bandwidth.
-                    priority={i === 0}
-                    loading={i === 0 ? undefined : "lazy"}
-                  />
-                </div>
-
-                {study.gallery && study.gallery.length > 0 && (
-                  <ul
-                    className={`mt-3 grid gap-3 ${
-                      study.gallery.length > 2 ? "grid-cols-3" : "grid-cols-2"
-                    }`}
-                  >
-                    {study.gallery.map((src) => (
-                      <li key={src} className="rounded-xl p-1.5" style={{ background: study.bg }}>
-                        <Image
-                          src={src}
-                          alt={`${study.name} — supporting frame`}
-                          width={0}
-                          height={0}
-                          className="w-full rounded-lg"
-                          sizes="(max-width: 1024px) 33vw, 19vw"
-                          loading="lazy"
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <CaseStudyMedia shots={study.shots} bg={study.bg} layout={study.layout} priority={i === 0} />
+                <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-30">
+                  {study.shots.length} {study.shots.length === 1 ? "screen" : "screens"} — click any to open full size
+                </p>
               </div>
             </div>
           </article>
@@ -194,29 +159,10 @@ export default function WorkPageLayout() {
         </section>
 
         <div className={`${SECTION} max-w-[1440px] mx-auto pb-16 md:pb-24`}>
-          <ul className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 md:gap-y-4">
-            {GALLERY.map((item, i) => (
-              <li key={item.src} className={OFFSETS[i % OFFSETS.length]}>
-                <figure>
-                  <div className="rounded-2xl p-2 transition-transform duration-300 hover:-translate-y-1" style={{ background: item.bg }}>
-                    <Image
-                      src={item.src}
-                      alt={`${item.name} — ${item.caption}`}
-                      width={0}
-                      height={0}
-                      className="w-full rounded-xl"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      loading="lazy"
-                    />
-                  </div>
-                  <figcaption className="mt-3 flex items-baseline gap-2">
-                    <span className="text-[14px] font-medium text-ink">{item.name}</span>
-                    <span className="text-[13px] text-ink-50">{item.caption}</span>
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
+          <GalleryWall
+            shots={GALLERY}
+            tiles={GALLERY.map((g, i) => ({ bg: g.bg, offset: OFFSETS[i % OFFSETS.length] }))}
+          />
         </div>
 
         {/* ── CTA ──────────────────────────────────────────── */}
