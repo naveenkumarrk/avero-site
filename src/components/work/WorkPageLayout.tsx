@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Footer from "@/components/layout/Footer";
-import PageNav from "@/components/layout/PageNav";
-import { CASE_STUDIES } from "@/lib/work";
+import WorkNav from "@/components/layout/WorkNav";
+import { CASE_STUDIES, GALLERY } from "@/lib/work";
 import { CONTACT_EMAIL } from "@/lib/site";
 
 const SECTION = "px-5 sm:px-8 md:px-12 lg:px-20";
@@ -17,14 +17,20 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * Staggered offsets for the gallery wall. Fixed per column rather than random
+ * so the layout is stable between server and client renders.
+ */
+const OFFSETS = ["md:mt-0", "md:mt-16", "md:mt-6"];
+
 export default function WorkPageLayout() {
   return (
     <>
-      <PageNav currentSlug="work" />
+      <WorkNav />
 
-      <main className="max-w-[1280px] mx-auto">
+      <main>
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section className={`${SECTION} pt-12 md:pt-16 pb-10 md:pb-14`}>
+        <section className={`${SECTION} max-w-[1280px] mx-auto pt-28 md:pt-32 pb-10 md:pb-14`}>
           <nav aria-label="Breadcrumb" className="mb-8">
             <ol className="flex items-center gap-2 text-[13px] text-ink-50">
               <li>
@@ -46,20 +52,20 @@ export default function WorkPageLayout() {
             Interfaces built to convert, not to win awards.
           </h1>
 
-          {/* Says plainly that these are concept pieces. A prospect who asks
+          {/* States plainly that these are concept pieces — a prospect who asks
               "which of these shipped?" gets the same answer the page gives. */}
           <p className="mt-7 text-ink-70 text-[16px] md:text-[18px] leading-relaxed max-w-[62ch]">
-            Self-initiated concept work from a daily design practice — SaaS dashboards,
-            industrial marketing sites, fintech and hardware. Each piece is a full design
-            problem solved end to end, not a dribbble shot. Client work is covered on request.
+            Four products taken end to end, plus a wall of daily practice — SaaS dashboards,
+            mobile marketplaces, industrial sites and fintech. Self-initiated concept work,
+            designed as full problems rather than single shots. Client work is covered on request.
           </p>
 
           <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink-12 bg-ink-12 sm:grid-cols-4">
             {[
-              { label: "Pieces", value: `${CASE_STUDIES.length} case studies` },
-              { label: "Focus", value: "SaaS, product UI, marketing sites" },
+              { label: "Case studies", value: `${CASE_STUDIES.length} in depth` },
+              { label: "Pieces", value: `${CASE_STUDIES.length + GALLERY.length} total` },
+              { label: "Focus", value: "SaaS, mobile, marketing sites" },
               { label: "Built with", value: "Figma → Next.js" },
-              { label: "Turnaround", value: "7-day sprints" },
             ].map(({ label, value }) => (
               <div key={label} className="bg-white p-5">
                 <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-50">{label}</dt>
@@ -67,11 +73,8 @@ export default function WorkPageLayout() {
               </div>
             ))}
           </dl>
-        </section>
 
-        {/* ── Index ────────────────────────────────────────── */}
-        <section className={`${SECTION} pb-12 md:pb-16`} aria-label="Case study index">
-          <ul className="flex flex-wrap gap-2">
+          <ul className="mt-8 flex flex-wrap gap-2">
             {CASE_STUDIES.map(({ slug, name, category }) => (
               <li key={slug}>
                 <a
@@ -93,7 +96,7 @@ export default function WorkPageLayout() {
           <article
             key={study.slug}
             id={study.slug}
-            className={`${SECTION} scroll-mt-24 border-t border-ink-12 py-14 md:py-20`}
+            className={`${SECTION} max-w-[1280px] mx-auto scroll-mt-24 border-t border-ink-12 py-14 md:py-20`}
           >
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
               {/* Copy column — order flips so the eye alternates down the page. */}
@@ -139,7 +142,10 @@ export default function WorkPageLayout() {
                     height={0}
                     className="w-full rounded-xl md:rounded-2xl"
                     sizes="(max-width: 1024px) 100vw, 58vw"
+                    // Only the first cover is eager; everything below the fold
+                    // stays lazy so the hero isn't competing for bandwidth.
                     priority={i === 0}
+                    loading={i === 0 ? undefined : "lazy"}
                   />
                 </div>
 
@@ -158,6 +164,7 @@ export default function WorkPageLayout() {
                           height={0}
                           className="w-full rounded-lg"
                           sizes="(max-width: 1024px) 33vw, 19vw"
+                          loading="lazy"
                         />
                       </li>
                     ))}
@@ -168,8 +175,52 @@ export default function WorkPageLayout() {
           </article>
         ))}
 
+        {/* ── Gallery wall ─────────────────────────────────── */}
+        <section
+          id="gallery"
+          className={`${SECTION} max-w-[1440px] mx-auto scroll-mt-24 border-t border-ink-12 pt-14 md:pt-20 pb-8`}
+        >
+          <Eyebrow>Daily practice</Eyebrow>
+          <h2
+            className="mt-4 font-medium text-ink text-[28px] sm:text-[34px] md:text-[40px] max-w-[16ch]"
+            style={{ lineHeight: 1.02, letterSpacing: "-0.04em" }}
+          >
+            One design a day.
+          </h2>
+          <p className="mt-5 max-w-[54ch] text-[15px] leading-relaxed text-ink-70">
+            A standing habit rather than a portfolio exercise — a finished screen most days,
+            built to a real brief with real constraints. It is where the range comes from.
+          </p>
+        </section>
+
+        <div className={`${SECTION} max-w-[1440px] mx-auto pb-16 md:pb-24`}>
+          <ul className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 md:gap-y-4">
+            {GALLERY.map((item, i) => (
+              <li key={item.src} className={OFFSETS[i % OFFSETS.length]}>
+                <figure>
+                  <div className="rounded-2xl p-2 transition-transform duration-300 hover:-translate-y-1" style={{ background: item.bg }}>
+                    <Image
+                      src={item.src}
+                      alt={`${item.name} — ${item.caption}`}
+                      width={0}
+                      height={0}
+                      className="w-full rounded-xl"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                    />
+                  </div>
+                  <figcaption className="mt-3 flex items-baseline gap-2">
+                    <span className="text-[14px] font-medium text-ink">{item.name}</span>
+                    <span className="text-[13px] text-ink-50">{item.caption}</span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* ── CTA ──────────────────────────────────────────── */}
-        <section className={`${SECTION} border-t border-ink-12 py-16 md:py-24`}>
+        <section className={`${SECTION} max-w-[1280px] mx-auto border-t border-ink-12 py-16 md:py-24`}>
           <h2
             className="font-medium text-ink text-[26px] sm:text-[32px] md:text-[38px] max-w-[20ch]"
             style={{ lineHeight: 1.02, letterSpacing: "-0.04em" }}

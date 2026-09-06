@@ -1,31 +1,83 @@
 /**
- * Case studies for /work. Kept as data (like services.ts) so the page renderer
- * and the JSON-LD read from one source and can't drift apart.
+ * Content for /work. Kept as data (like services.ts) so the page renderer and
+ * the JSON-LD read from one source and can't drift apart.
  *
- * These are self-initiated concept pieces from a daily design practice, and the
- * copy says so. No client names, no invented metrics — a prospect who asks
- * "what shipped?" should get the same answer the page gives.
+ * Two tiers by design:
+ *   FEATURED — full product work that can carry a written case study.
+ *   GALLERY  — the daily design practice, shown as a scannable wall with captions.
+ *
+ * All of it is self-initiated concept work, and the page says so. No client
+ * names and no invented metrics.
  */
 
 export type CaseStudy = {
   slug: string;
-  /** Product name as designed in the piece. */
   name: string;
-  /** Sector/surface label, used as the filter chip and eyebrow. */
   category: string;
   tagline: string;
-  /** Two or three sentences: the problem the interface had to solve. */
+  /** The problem the interface had to solve. */
   summary: string;
   /** What was actually designed — concrete surfaces, not adjectives. */
   scope: string[];
   cover: string;
-  /** Supporting frames, shown as a strip under the cover. */
   gallery?: string[];
   /** Tile background, sampled from each design so covers sit on their own tone. */
   bg: string;
 };
 
+export type GalleryItem = {
+  src: string;
+  name: string;
+  caption: string;
+  bg: string;
+  /** Portrait pieces get a taller tile in the staggered wall. */
+  tall?: boolean;
+};
+
 export const CASE_STUDIES: CaseStudy[] = [
+  {
+    slug: "roger",
+    name: "Roger",
+    category: "SaaS · CRM",
+    tagline: "A sales CRM that fits in one screen",
+    summary:
+      "The deepest piece here: a full sales CRM designed screen by screen rather than as a single hero shot. The hard part of CRM design is density — a rep needs counts, stage, owner, source and next action visible at once without the table turning into noise. The layout solves it with a fixed metric strip, one accent colour reserved for state, and everything else in greyscale.",
+    scope: [
+      "Leads table with stage, owner and source",
+      "Pipeline board across six stages",
+      "Customer profile with activity timeline",
+      "Tasks, call logs, SMS and contracts",
+      "Sidebar variants and a full icon set",
+    ],
+    cover: "/images/roger-leads.webp",
+    gallery: [
+      "/images/roger-stages.webp",
+      "/images/roger-profile.webp",
+      "/images/roger-tasks.webp",
+      "/images/roger-sidebar.webp",
+      "/images/roger-icons.webp",
+      "/images/roger-slide.webp",
+    ],
+    bg: "#0f2027",
+  },
+  {
+    slug: "butcherbhaiss",
+    name: "ButcherBhaiss",
+    category: "Mobile · Marketplace",
+    tagline: "A two-sided app for a butcher's shop",
+    summary:
+      "A meat delivery marketplace designed for both sides of the transaction — the customer ordering and the shop fulfilling. Two-sided products usually get one polished side and one afterthought; here the seller's dashboard, order queue and product editor got the same attention as the storefront, because the shop owner is the one who has to use it every day.",
+    scope: [
+      "Onboarding, login and phone verification",
+      "Storefront, shop browse and product detail",
+      "Cart, checkout and order confirmation",
+      "Seller dashboard with revenue and reviews",
+      "Order queue, product editor and payouts",
+    ],
+    cover: "/images/butcher-allscreens.webp",
+    gallery: ["/images/butcher-user.webp", "/images/butcher-seller.webp"],
+    bg: "#151515",
+  },
   {
     slug: "databuddy",
     name: "Databuddy",
@@ -51,51 +103,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     bg: "#0d1117",
   },
   {
-    slug: "lumina",
-    name: "Lumina",
-    category: "SaaS · AI",
-    tagline: "AI that connects your tools and gets work done",
-    summary:
-      "An AI orchestration product for teams. Category pages in this space all say the same sentence, so the layout does the differentiating: the integration surface is shown immediately, and the hero states the outcome rather than the technology.",
-    scope: ["Landing page", "Integration showcase", "Logo wall and social proof band"],
-    cover: "/images/day-34.webp",
-    bg: "#0b1836",
-  },
-  {
-    slug: "callscall",
-    name: "Callscall",
-    category: "SaaS · Dashboard",
-    tagline: "Smarter insights, faster decisions",
-    summary:
-      "A reporting tool where the dashboard is the product. The page shows the real interface above the fold instead of an abstract illustration, because a buyer evaluating an analytics tool wants to see the table they will live in.",
-    scope: ["Landing page", "Dashboard interface", "Data table and metric cards"],
-    cover: "/images/day-17.webp",
-    bg: "#f4f4f2",
-  },
-  {
-    slug: "securemint",
-    name: "SecureMint",
-    category: "Fintech · Security",
-    tagline: "Protect every transaction, every time",
-    summary:
-      "A four-day build on transaction security for crypto businesses. Trust is the entire conversion argument in fintech, so the visual weight goes to the layered card stack and a dark, deliberately restrained palette.",
-    scope: ["Multi-section landing page", "Card stack visual system", "Pricing and plan structure"],
-    cover: "/images/day-18-21.webp",
-    bg: "#0a0a0f",
-  },
-  {
-    slug: "leads-workspace",
-    name: "Leads Workspace",
-    category: "Product UI · CRM",
-    tagline: "A CRM that fits in one screen",
-    summary:
-      "Interface work rather than marketing: a leads dashboard and a task workspace built around dense information without the usual CRM clutter. The constraint was keeping counts, filters and record detail legible at real data volumes.",
-    scope: ["Leads dashboard", "Task and board views", "Filter, search and detail panels"],
-    cover: "/images/day-24-1.webp",
-    gallery: ["/images/day-23-1.webp"],
-    bg: "#eef1f5",
-  },
-  {
     slug: "windroof",
     name: "windRoof",
     category: "Energy · Industrial",
@@ -106,28 +113,28 @@ export const CASE_STUDIES: CaseStudy[] = [
     cover: "/images/day-6.webp",
     bg: "#eaf2e6",
   },
-  {
-    slug: "shield",
-    name: "Shield",
-    category: "Security · Enterprise",
-    tagline: "Your data secured. Always.",
-    summary:
-      "An enterprise security landing page. The world-map coverage visual carries the credibility argument that enterprise buyers look for, with the product claim kept to a single line above it.",
-    scope: ["Landing page", "Global coverage visual", "Feature grid"],
-    cover: "/images/day-16.webp",
-    bg: "#0a0a0a",
-  },
-  {
-    slug: "pulse",
-    name: "Pulse",
-    category: "Hardware · Product",
-    tagline: "Beyond sound. Built with soul.",
-    summary:
-      "Product marketing for a retro-modern audio device. Hardware has to be sold on feel, so the page is built around one rendered hero object and typography that carries the brand voice on its own.",
-    scope: ["Product landing page", "Hardware render composition", "Retail conversion path"],
-    cover: "/images/day-11.webp",
-    bg: "#eef2fb",
-  },
+];
+
+/** Everything else — the daily practice, shown as a wall. */
+export const GALLERY: GalleryItem[] = [
+  { src: "/images/day-34.webp", name: "Lumina", caption: "AI workflow platform", bg: "#0b1836" },
+  { src: "/images/day-17.webp", name: "Callscall", caption: "Analytics dashboard", bg: "#f4f4f2" },
+  { src: "/images/day-18-21.webp", name: "SecureMint", caption: "Transaction security", bg: "#0a0a0f" },
+  { src: "/images/day-16.webp", name: "Shield", caption: "Enterprise data security", bg: "#0a0a0a" },
+  { src: "/images/day-11.webp", name: "Pulse", caption: "Audio hardware", bg: "#eef2fb" },
+  { src: "/images/day-24-1.webp", name: "Leads", caption: "CRM dashboard", bg: "#eef1f5" },
+  { src: "/images/day-23-1.webp", name: "Workspace", caption: "Task and board views", bg: "#f2f4f7" },
+  { src: "/images/day-8.webp", name: "Valut", caption: "Public records gateway", bg: "#0a0a0a" },
+  { src: "/images/day-13.webp", name: "Gravity Sports", caption: "Custom teamwear", bg: "#0d0d0d" },
+  { src: "/images/day-2.webp", name: "RealChain", caption: "Tokenised assets", bg: "#171423" },
+  { src: "/images/day-22.webp", name: "Design Studio", caption: "Agency site", bg: "#dfe9e2" },
+  { src: "/images/day-12.webp", name: "Ideas", caption: "Creative studio", bg: "#1d2a10" },
+  { src: "/images/day-7.webp", name: "Pricing", caption: "Plan comparison", bg: "#f5f5f3" },
+  { src: "/images/day-1.webp", name: "Awwarts", caption: "Art marketplace", bg: "#f7f6f2" },
+  { src: "/images/day-9.webp", name: "Prompt", caption: "AI image workspace", bg: "#12102a" },
+  { src: "/images/day-3.webp", name: "Devices", caption: "Product render", bg: "#8a8a8a" },
+  { src: "/images/day-29-1.webp", name: "Feature Flags", caption: "Feature card", bg: "#101010" },
+  { src: "/images/roger-leads-laptop.webp", name: "Roger", caption: "Leads, in context", bg: "#0f2027" },
 ];
 
 export const WORK_SLUGS = CASE_STUDIES.map((c) => c.slug);
