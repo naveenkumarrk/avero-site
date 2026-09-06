@@ -60,21 +60,7 @@ export default function WorkPageLayout() {
             designed as full problems rather than single shots. Client work is covered on request.
           </p>
 
-          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-ink-12 bg-ink-12 sm:grid-cols-4">
-            {[
-              { label: "Case studies", value: `${CASE_STUDIES.length} in depth` },
-              { label: "Pieces", value: `${CASE_STUDIES.length + GALLERY.length} total` },
-              { label: "Focus", value: "SaaS, mobile, marketing sites" },
-              { label: "Built with", value: "Figma → Next.js" },
-            ].map(({ label, value }) => (
-              <div key={label} className="bg-white p-5">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-50">{label}</dt>
-                <dd className="mt-2 text-[14px] font-medium leading-snug text-ink">{value}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <ul className="mt-8 flex flex-wrap gap-2">
+          <ul className="mt-10 flex flex-wrap gap-2">
             {CASE_STUDIES.map(({ slug, name, category }) => (
               <li key={slug}>
                 <a
