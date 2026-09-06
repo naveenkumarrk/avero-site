@@ -241,9 +241,12 @@ function Card({ viz, title, body }: CardProps) {
 /* ─── Section ─────────────────────────────────────── */
 export default function WhyAvero() {
   return (
-    <section className="lg:min-h-screen lg:flex lg:flex-col lg:justify-center py-20 md:py-[120px] lg:py-[160px] px-5 sm:px-8 md:px-12 lg:px-20 bg-bg">
+    /* No min-h-screen: forcing the section to fill the viewport and centring
+       it left ~160px of dead space under the cards, which read as a broken
+       section rather than breathing room. */
+    <section className="py-20 md:py-24 lg:py-28 px-5 sm:px-8 md:px-12 lg:px-20 bg-bg">
       {/* Header */}
-      <div className="flex flex-col items-center text-center gap-5 mb-16">
+      <div className="flex flex-col items-center text-center gap-5 mb-12">
         {/* Eyebrow */}
         <div className="flex items-center gap-2 text-ink-50 text-sm font-medium tracking-wide uppercase">
           <span className="eyebrow-dot" />

@@ -1,12 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useState } from "react";
 import { useLenis } from "lenis/react";
 
 const NAV_LINKS = [
   { label: "Services", href: "#services", icon: "M4 6h16M4 12h10M4 18h14" },
   { label: "Process", href: "#process", icon: "M9 5l7 7-7 7" },
-  { label: "Work", href: "#work", icon: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" },
+  // Real route, not an anchor — the on-page work grid was replaced by /work.
+  { label: "Work", href: "/work", route: true, icon: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" },
   { label: "Contact", href: "#contact", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
 ];
 
@@ -42,17 +44,24 @@ export default function Navbar() {
           </button>
           <div className="w-px h-5 bg-ink-12" />
           <div className="flex items-center gap-0.5">
-            {NAV_LINKS.map(({ label, href, icon }) => {
-              return (
-                <button
-                  key={label}
-                  onClick={() => scrollTo(href)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-ink-70 hover:text-ink hover:bg-ink-06 transition-all duration-200"
-                >
+            {NAV_LINKS.map(({ label, href, icon, route }) => {
+              const inner = (
+                <>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="opacity-50">
                     <path d={icon} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                   {label}
+                </>
+              );
+              const cls =
+                "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-ink-70 hover:text-ink hover:bg-ink-06 transition-all duration-200";
+              return route ? (
+                <Link key={label} href={href} className={cls}>
+                  {inner}
+                </Link>
+              ) : (
+                <button key={label} onClick={() => scrollTo(href)} className={cls}>
+                  {inner}
                 </button>
               );
             })}
@@ -105,17 +114,24 @@ export default function Navbar() {
         {open && (
           <div className="mx-4 mt-1 bg-white border border-ink-12 rounded-2xl shadow-lg overflow-hidden">
             <div className="flex flex-col p-3 gap-1">
-              {NAV_LINKS.map(({ label, href, icon }) => {
-                return (
-                  <button
-                    key={label}
-                    onClick={() => { scrollTo(href); setOpen(false); }}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-medium text-ink-70 hover:text-ink hover:bg-ink-06 transition-all w-full text-left"
-                  >
+              {NAV_LINKS.map(({ label, href, icon, route }) => {
+                const cls =
+                  "flex items-center gap-3 px-4 py-3 rounded-xl text-[15px] font-medium text-ink-70 hover:text-ink hover:bg-ink-06 transition-all w-full text-left";
+                const inner = (
+                  <>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="opacity-40">
                       <path d={icon} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     {label}
+                  </>
+                );
+                return route ? (
+                  <Link key={label} href={href} onClick={() => setOpen(false)} className={cls}>
+                    {inner}
+                  </Link>
+                ) : (
+                  <button key={label} onClick={() => { scrollTo(href); setOpen(false); }} className={cls}>
+                    {inner}
                   </button>
                 );
               })}

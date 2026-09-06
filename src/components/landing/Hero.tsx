@@ -18,52 +18,77 @@ const avatars = [
   { initials: "JR", bg: "bg-emerald-400" },
 ];
 
+/**
+ * Background carousel pool. Points at the /work exports rather than the older
+ * originals — same designs, a fraction of the bytes, which matters when the
+ * hero paints dozens of them at once behind the copy.
+ */
 const heroImages = [
-  "/images/day-1.webp",
-  "/images/day-2.webp",
-  "/images/day-3.webp",
-  "/images/day-6.webp",
-  "/images/day-7.webp",
-  "/images/day-8.webp",
-  "/images/day-9.webp",
-  "/images/day-11.webp",
-  "/images/day-12.webp",
-  "/images/day-13.webp",
-  "/images/day-16.webp",
-  "/images/day-17.webp",
-  "/images/day-18-21.webp",
-  "/images/day-22.webp",
-  "/images/day-23-1.webp",
-  "/images/day-24-1.webp",
-  "/images/day-25.webp",
-  "/images/day-26.webp",
-  "/images/day-27.webp",
-  "/images/day-28.webp",
-  "/images/day-29.webp",
-  "/images/day-34.webp",
-  "/images/og-image.webp",
-  "/images/privacy-feature.webp",
+  "/images/work/day/day-34.webp",
+  "/images/work/roger/leads.webp",
+  "/images/work/day/day-17.webp",
+  "/images/work/butcher/home.webp",
+  "/images/work/day/day-16.webp",
+  "/images/work/roger/dashboard.webp",
+  "/images/work/day/day-13.webp",
+  "/images/work/day/day-2.webp",
+  "/images/work/roger/pipeline.webp",
+  "/images/work/day/day-22.webp",
+  "/images/work/butcher/shop-list.webp",
+  "/images/work/day/day-8.webp",
+  "/images/work/day/databuddy.webp",
+  "/images/work/roger/tasks.webp",
+  "/images/work/day/day-12.webp",
+  "/images/work/butcher/product-page.webp",
+  "/images/work/day/day-11.webp",
+  "/images/work/roger/all-stages.webp",
+  "/images/work/day/day-7.webp",
+  "/images/work/day/day-33.webp",
+  "/images/work/roger/profile.webp",
+  "/images/work/day/day-6.webp",
+  "/images/work/butcher/payment-method.webp",
+  "/images/work/day/day-35.webp",
+  "/images/work/roger/automations-edit.webp",
+  "/images/work/day/day-1.webp",
+  "/images/work/day/day-23.webp",
+  "/images/work/butcher/my-orders-01.webp",
+  "/images/work/roger/login-page.webp",
+  "/images/work/day/day-15.webp",
+  "/images/work/day/day-9.webp",
+  "/images/work/roger/sms-page-2.webp",
 ];
 
 const IMG_COUNT = heroImages.length;
 
-function CarouselCard({ index }: { index: number }) {
+/** Each column walks the pool on a different stride, so no two columns repeat. */
+const COLUMN_STRIDES = [1, 3, 5, 7];
+const CARDS_PER_COLUMN = 8;
+
+function columnImages(col: number) {
+  const stride = COLUMN_STRIDES[col];
+  return Array.from(
+    { length: CARDS_PER_COLUMN },
+    (_, i) => heroImages[(col * 3 + i * stride) % IMG_COUNT]
+  );
+}
+
+function CarouselCard({ src }: { src: string }) {
   return (
     <div className="rounded-xl overflow-hidden w-full p-3">
       <Image
-        src={heroImages[index % IMG_COUNT]}
+        src={src}
         alt=""
         width={0}
         height={0}
         className="w-full h-auto rounded-xl"
-        sizes="(max-width: 768px) 33vw, 25vw"
+        // Rendered small, behind copy, at 15% opacity — no reason to ship a
+        // full-width source or full quality.
+        sizes="(max-width: 768px) 30vw, 320px"
+        quality={55}
       />
     </div>
   );
 }
-
-// Cards to fill a column Ã¢â‚¬â€ duplicated so the marquee loops seamlessly
-const COLUMN_CARDS = [0, 1, 2, 0, 2, 1, 0, 1, 2, 0, 2, 1];
 
 export function Hero() {
   const lenis = useLenis();
@@ -81,50 +106,28 @@ export function Hero() {
         {/* Fade mask top + bottom */}
         <div className="marquee-mask-vertical absolute inset-0 z-10" />
         <div className="grid grid-cols-4 gap-3 h-full">
-          {/* Column 1 Ã¢â‚¬â€ forward, 25s */}
-          <div className="overflow-hidden">
-            <div
-              className="animate-marquee-vertical flex flex-col gap-3"
-              style={{ "--duration": "25s" } as React.CSSProperties}
-            >
-              {[...COLUMN_CARDS, ...COLUMN_CARDS].map((v, i) => (
-                <CarouselCard key={i} index={i} />
-              ))}
-            </div>
-          </div>
-          {/* Column 2 Ã¢â‚¬â€ reverse, 35s */}
-          <div className="overflow-hidden">
-            <div
-              className="animate-marquee-vertical-reverse flex flex-col gap-3"
-              style={{ "--duration": "35s" } as React.CSSProperties}
-            >
-              {[...COLUMN_CARDS, ...COLUMN_CARDS].map((v, i) => (
-                <CarouselCard key={i} index={i + 24} />
-              ))}
-            </div>
-          </div>
-          {/* Column 3 Ã¢â‚¬â€ forward, 30s */}
-          <div className="overflow-hidden">
-            <div
-              className="animate-marquee-vertical flex flex-col gap-3"
-              style={{ "--duration": "30s" } as React.CSSProperties}
-            >
-              {[...COLUMN_CARDS, ...COLUMN_CARDS].map((v, i) => (
-                <CarouselCard key={i} index={i + 48} />
-              ))}
-            </div>
-          </div>
-          {/* Column 4 Ã¢â‚¬â€ reverse, 40s */}
-          <div className="overflow-hidden">
-            <div
-              className="animate-marquee-vertical-reverse flex flex-col gap-3"
-              style={{ "--duration": "40s" } as React.CSSProperties}
-            >
-              {[...COLUMN_CARDS, ...COLUMN_CARDS].map((v, i) => (
-                <CarouselCard key={i} index={i + 72} />
-              ))}
-            </div>
-          </div>
+          {[
+            { dir: "animate-marquee-vertical", duration: "25s" },
+            { dir: "animate-marquee-vertical-reverse", duration: "35s" },
+            { dir: "animate-marquee-vertical", duration: "30s" },
+            { dir: "animate-marquee-vertical-reverse", duration: "40s" },
+          ].map(({ dir, duration }, col) => {
+            const imgs = columnImages(col);
+            return (
+              <div key={col} className="overflow-hidden">
+                <div
+                  className={`${dir} flex flex-col gap-3`}
+                  // Promote to its own layer: without it the browser repaints
+                  // the whole stack of images on every animation frame.
+                  style={{ "--duration": duration, willChange: "transform" } as React.CSSProperties}
+                >
+                  {[...imgs, ...imgs].map((src, i) => (
+                    <CarouselCard key={i} src={src} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
