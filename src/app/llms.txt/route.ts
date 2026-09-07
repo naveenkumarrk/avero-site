@@ -1,5 +1,5 @@
-import { FAQ_ITEMS } from "@/lib/constants";
 import { SERVICE_PAGES } from "@/lib/services";
+import { CASE_STUDIES } from "@/lib/work";
 import { CONTACT_EMAIL, CONTENT_UPDATED, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 /**
@@ -19,7 +19,16 @@ export function GET() {
     (p) => `- [${p.serviceName}](${SITE_URL}/${p.slug}): ${p.metaDescription}`,
   ).join("\n");
 
-  const faqs = FAQ_ITEMS.map(({ q, a }) => `### ${q}\n${a}`).join("\n\n");
+  // Sourced from the service pages, where these answers are actually visible.
+  // The homepage FAQ was removed, so publishing its copy here would assert
+  // things a crawler can't verify anywhere on the site.
+  const faqs = SERVICE_PAGES.flatMap((p) =>
+    p.faqs.map(({ q, a }) => `### ${q}\n${a}\n\nSource: ${SITE_URL}/${p.slug}`),
+  ).join("\n\n");
+
+  const work = CASE_STUDIES.map(
+    (c) => `- [${c.name}](${SITE_URL}/work#${c.slug}) — ${c.category}: ${c.tagline}`,
+  ).join("\n");
 
   const serviceFaqs = SERVICE_PAGES.map(
     (p) =>
@@ -44,13 +53,20 @@ ${services}
 
 ${serviceFaqs}
 
+## Selected work
+
+Concept case studies, designed end to end. Not client commissions.
+
+${work}
+
 ## Frequently asked questions
 
 ${faqs}
 
 ## Pages
 
-- [Home](${SITE_URL}/): process, comparison against agencies and freelancers, selected work.
+- [Home](${SITE_URL}/): services, process, comparison against agencies and freelancers, booking.
+- [Work](${SITE_URL}/work): case studies and a gallery of daily design practice.
 ${SERVICE_PAGES.map((p) => `- [${p.navLabel}](${SITE_URL}/${p.slug})`).join("\n")}
 
 ## Notes
