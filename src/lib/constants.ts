@@ -7,13 +7,6 @@ export const PROCESS_STEPS = [
   { num: 4, day: "Day 7", title: "Launch", desc: "Live URL, your repo, your domain. 30 days post-launch support included." },
 ];
 
-export const FAQ_ITEMS = [
-  { q: "What can you actually ship in 7 days?", a: "Marketing sites, v1 dashboards, Stripe funnels, AI wrappers, internal tools. Most scopes fit." },
-  { q: "What does it cost?", a: "$14k flat for a 7-day sprint. Multi-week priced per sprint." },
-  { q: "What stack do you use?", a: "Next.js, TypeScript, Tailwind, Postgres, Stripe, Clerk/Supabase. We bend to your stack." },
-  { q: "Do you do AI products?", a: "Half our 2025 work. RAG, agents, streaming UIs, evals." },
-  { q: "What about ongoing work?", a: "We keep a few monthly retainers. Ask after your sprint." },
-];
 
 export const TESTIMONIALS = [
   { p: 1, name: "Suhair Rahman", q: "Sleek, high-performance, and our clients love it.", role: "Founder · SpainAcademy" },

@@ -19,13 +19,6 @@ export function GET() {
     (p) => `- [${p.serviceName}](${SITE_URL}/${p.slug}): ${p.metaDescription}`,
   ).join("\n");
 
-  // Sourced from the service pages, where these answers are actually visible.
-  // The homepage FAQ was removed, so publishing its copy here would assert
-  // things a crawler can't verify anywhere on the site.
-  const faqs = SERVICE_PAGES.flatMap((p) =>
-    p.faqs.map(({ q, a }) => `### ${q}\n${a}\n\nSource: ${SITE_URL}/${p.slug}`),
-  ).join("\n\n");
-
   const work = CASE_STUDIES.map(
     (c) => `- [${c.name}](${SITE_URL}/work#${c.slug}) — ${c.category}: ${c.tagline}`,
   ).join("\n");
@@ -58,10 +51,6 @@ ${serviceFaqs}
 Concept case studies, designed end to end. Not client commissions.
 
 ${work}
-
-## Frequently asked questions
-
-${faqs}
 
 ## Pages
 
