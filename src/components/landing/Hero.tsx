@@ -158,25 +158,18 @@ export function Hero() {
           }}
         >
 
-          Websites, MVPs{" "}
-          <span
-            className="font-serif italic"
-            style={{ color: "var(--color-accent-deep)" }}
-          >
-            &amp;
-          </span>{" "}
-          AI products
+          We design it.
           <br />
-          that look{" "}
-          <em className="font-serif italic" style={{ fontWeight: 400 }}>sharp</em> and{" "}
-          <span className="highlight-mark">convert hard</span>.
+          Then we{" "}
+          <em className="font-serif italic" style={{ fontWeight: 400 }}>actually</em>{" "}
+          <span className="highlight-mark">build it</span>.
         </h1>
 
         {/* Aside */}
         <aside className="flex flex-col gap-6 pb-2">
           {/* Lede */}
           <p className="text-sm text-ink-70 leading-relaxed">
-            Senior studio. Live URL in seven days, not seven weeks.
+            A creative studio — small, hands-on, and quick where it counts.
           </p>
 
           {/* CTA row */}
