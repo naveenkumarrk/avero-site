@@ -1,3 +1,4 @@
+import { PresenceProvider } from "@/components/presence/PresenceProvider";
 import type { Metadata } from "next";
 import { Poppins, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
@@ -158,7 +159,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <LenisProvider>{children}</LenisProvider>
+        <PresenceProvider>
+          <LenisProvider>{children}</LenisProvider>
+        </PresenceProvider>
       </body>
     </html>
   );

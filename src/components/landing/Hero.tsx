@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
+import { OnlineNow } from "@/components/presence/OnlineNow";
 import { useLenis } from "lenis/react";
 
 const logos = [
@@ -144,6 +146,8 @@ export function Hero() {
           <span>Available for projects</span>
 
         </div>
+
+        <OnlineNow />
 
       </div>
 

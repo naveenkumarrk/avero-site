@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { SERVICE_PAGES } from "@/lib/services";
 import { CONTACT_EMAIL, SOCIAL_LINKS } from "@/lib/site";
+import { VisitTotal } from "@/components/presence/VisitTotal";
 
 export default function Footer() {
   return (
@@ -86,6 +87,7 @@ export default function Footer() {
           <span className="text-white/30 text-sm hidden sm:inline">·</span>
           <span className="text-white/50 text-sm">© 2026 Avero Studio</span>
         </Link>
+        <VisitTotal />
         <a
           href={`mailto:${CONTACT_EMAIL}`}
           className="text-white/50 hover:text-accent text-sm transition-colors"
