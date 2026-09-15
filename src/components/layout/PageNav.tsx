@@ -14,9 +14,7 @@ export default function PageNav({ currentSlug }: { currentSlug?: string }) {
           <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
             <rect width="32" height="32" rx="8" fill="#0a0a0a" />
             <circle cx="12.5" cy="19" r="5.6" fill="#fff" />
-            <circle cx="12.5" cy="19" r="2.2" fill="#D6F23A" />
             <rect x="18.6" y="9.4" width="3.2" height="15.2" rx="1.2" fill="#fff" />
-            <rect x="18.6" y="22.4" width="3.2" height="3" rx="0" fill="#D6F23A" />
           </svg>
           <span className="font-medium text-lg tracking-tight text-ink">
             avero<span className="text-accent">.</span>
