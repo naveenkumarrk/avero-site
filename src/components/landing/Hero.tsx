@@ -92,7 +92,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative text-center text-ink min-h-[86vh] flex flex-col pt-16 sm:pt-20 md:pt-24 lg:pt-[100px] px-5 sm:px-8 md:px-12 lg:px-20"
+      className="relative text-center text-ink min-h-[100svh] flex flex-col pt-16 sm:pt-20 md:pt-24 lg:pt-[100px] px-5 sm:px-8 md:px-12 lg:px-20"
     >
       {/* Ã¢â€â‚¬Ã¢â€â‚¬ Vertical carousel background Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 overflow-hidden pointer-events-none opacity-[0.08]">
@@ -149,11 +149,12 @@ export function Hero() {
 
       {/* Grid: headline + aside */}
       <div className="flex-1 flex items-center pb-6 sm:pb-8 lg:pb-10">
-      <div className="flex flex-col items-center gap-10 lg:gap-12 w-full">
+      <div className="flex flex-col items-center gap-[clamp(1.75rem,4.5vh,3.5rem)] w-full">
         {/* Headline */}
         <h1
-          className="font-medium text-ink leading-none mx-auto max-w-[16ch] text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
+          className="font-medium text-ink leading-none mx-auto max-w-[26ch]"
           style={{
+            fontSize: "clamp(2rem, 4.2vw + 1rem, 6.75rem)",
             lineHeight: 0.96,
             letterSpacing: "-0.055em",
           }}
@@ -167,9 +168,12 @@ export function Hero() {
         </h1>
 
         {/* Aside */}
-        <aside className="flex flex-col items-center gap-6">
+        <aside className="flex flex-col items-center gap-[clamp(1.25rem,2.5vh,2rem)]">
           {/* Lede */}
-          <p className="text-sm text-ink-70 leading-relaxed max-w-sm text-balance">
+          <p
+            className="text-ink-70 leading-relaxed max-w-[34ch] text-balance"
+            style={{ fontSize: "clamp(0.875rem, 1.05vw, 1.125rem)" }}
+          >
             A creative studio — small, hands‑on, and quick where it counts.
           </p>
 
@@ -213,7 +217,7 @@ export function Hero() {
         </div>
 
         {/* Scrolling track */}
-        <div className="flex-1 overflow-hidden">
+        <div className="marquee-mask flex-1 overflow-hidden">
           <div
             className="flex items-center gap-8 animate-marquee whitespace-nowrap"
             style={
