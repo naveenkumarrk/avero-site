@@ -255,21 +255,14 @@ export default function WhyAvero() {
 
         {/* Headline */}
         <h2
-          className="text-ink leading-[1.1] tracking-tight max-w-2xl text-[28px] sm:text-[36px] md:text-[46px] lg:text-[56px]"
+          className="text-ink font-medium leading-[1.05] tracking-[-0.045em] max-w-2xl text-[28px] sm:text-[36px] md:text-[46px] lg:text-[56px]"
         >
-          The studio you wish you&apos;d found{" "}
-          <span
-            className="font-serif italic text-ink-50"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            two projects ago.
-          </span>
+          The studio you wish you&apos;d found sooner.
         </h2>
 
         {/* Subtext */}
-        <p className="text-ink-50 text-lg max-w-lg leading-relaxed">
-          Senior talent, honest pricing, and a process that actually ships — not
-          a six-week discovery phase.
+        <p className="text-ink-50 text-base max-w-md leading-relaxed">
+          Honest pricing, no hand-offs, work that ships.
         </p>
       </div>
 

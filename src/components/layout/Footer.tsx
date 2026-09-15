@@ -40,14 +40,6 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/#process"
-                className="text-white/60 hover:text-white text-sm transition-colors"
-              >
-                Process
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="/#contact"
                 className="text-white/60 hover:text-white text-sm transition-colors"
               >

@@ -5,8 +5,6 @@ import { useCallback, useState } from "react";
 import { useLenis } from "lenis/react";
 
 const NAV_LINKS = [
-  { label: "Services", href: "#services", icon: "M4 6h16M4 12h10M4 18h14" },
-  { label: "Process", href: "#process", icon: "M9 5l7 7-7 7" },
   // Real route, not an anchor — the on-page work grid was replaced by /work.
   { label: "Work", href: "/work", route: true, icon: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" },
   { label: "Contact", href: "#contact", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useLenis } from "lenis/react";
 
 const logos = [
@@ -91,10 +92,10 @@ export function Hero() {
 
   return (
     <section
-      className="relative text-left text-ink min-h-screen flex flex-col pt-16 sm:pt-20 md:pt-24 lg:pt-[100px] px-5 sm:px-8 md:px-12 lg:px-20"
+      className="relative text-center text-ink min-h-[86vh] flex flex-col pt-16 sm:pt-20 md:pt-24 lg:pt-[100px] px-5 sm:px-8 md:px-12 lg:px-20"
     >
       {/* Ã¢â€â‚¬Ã¢â€â‚¬ Vertical carousel background Ã¢â€â‚¬Ã¢â€â‚¬ */}
-      <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 overflow-hidden pointer-events-none opacity-15">
+      <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 overflow-hidden pointer-events-none opacity-[0.08]">
         {/* Depth overlays */}
         <div className="absolute inset-0 bg-gradient-to-r from-bg via-transparent to-bg z-20 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent z-20 pointer-events-none" />
@@ -133,7 +134,7 @@ export function Hero() {
       <div className="relative z-10 flex flex-col flex-1">
 
       {/* Top row */}
-      <div className="flex items-center gap-3 sm:gap-5 mb-8 sm:mb-12">
+      <div className="flex items-center justify-center gap-3 sm:gap-5 mb-8 sm:mb-12">
         {/* Eyebrow pill */}
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-ink-12 bg-white/60 backdrop-blur-sm text-xs sm:text-sm font-medium text-ink whitespace-nowrap">
           <span className="relative flex h-2 w-2 flex-shrink-0">
@@ -147,11 +148,11 @@ export function Hero() {
       </div>
 
       {/* Grid: headline + aside */}
-      <div className="flex-1 flex items-end pb-10 sm:pb-14 lg:pb-20">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10 lg:gap-14 items-end w-full">
+      <div className="flex-1 flex items-center pb-6 sm:pb-8 lg:pb-10">
+      <div className="flex flex-col items-center gap-10 lg:gap-12 w-full">
         {/* Headline */}
         <h1
-          className="font-medium text-ink leading-none text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
+          className="font-medium text-ink leading-none mx-auto max-w-[16ch] text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
           style={{
             lineHeight: 0.96,
             letterSpacing: "-0.055em",
@@ -166,14 +167,14 @@ export function Hero() {
         </h1>
 
         {/* Aside */}
-        <aside className="flex flex-col gap-6 pb-2">
+        <aside className="flex flex-col items-center gap-6">
           {/* Lede */}
-          <p className="text-sm text-ink-70 leading-relaxed">
-            A creative studio — small, hands-on, and quick where it counts.
+          <p className="text-sm text-ink-70 leading-relaxed max-w-sm text-balance">
+            A creative studio — small, hands‑on, and quick where it counts.
           </p>
 
           {/* CTA row */}
-          <div className="flex items-center gap-4 flex-wrap">
+          <div className="flex items-center justify-center gap-4 flex-wrap">
             {/* Book a call button */}
             <button
               onClick={() => {
@@ -184,6 +185,17 @@ export function Hero() {
             >
               Book a call
             </button>
+
+            {/* Secondary — the work does more selling than the copy does */}
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full border border-ink-12 bg-white/60 backdrop-blur-sm text-ink text-sm font-medium hover:bg-white transition-colors"
+            >
+              View work
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
           </div>
         </aside>
       </div>
